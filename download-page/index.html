@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:   #070707;
+      --fg:   #ffffff;
+      --dim:  #333333;
+      --faint:#161616;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Sora', sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── layout ── */
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 64px 32px 80px;
+    }
+
+    /* ── header ── */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .headline {
+      font-size: clamp(52px, 12vw, 72px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--dim);
+      line-height: 1.6;
+      margin-bottom: 64px;
+    }
+
+    /* ── phone mockup ── */
+    .mockup-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .phone {
+      width: 200px;
+      height: 380px;
+      background: #0d0d0d;
+      border: 1.5px solid #1f1f1f;
+      border-radius: 36px;
+      padding: 24px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    }
+
+    .phone-notch {
+      width: 56px;
+      height: 6px;
+      background: #1a1a1a;
+      border-radius: 3px;
+      margin: 0 auto 28px;
+    }
+
+    .phone-app-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: #2a2a2a;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .phone-divider {
+      height: 1px;
+      background: #141414;
+      margin-bottom: 40px;
+    }
+
+    .phone-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .phone-dot.active   { background: #fff; }
+    .phone-dot.inactive { background: #1e1e1e; }
+
+    .phone-status {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .phone-sub {
+      font-size: 10px;
+      color: #3a3a3a;
+      margin-bottom: 32px;
+    }
+
+    .phone-rows { margin-bottom: 24px; }
+    .phone-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .phone-row-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: #222;
+    }
+    .phone-row-val {
+      font-family: var(--mono);
+      font-size: 9px;
+    }
+    .phone-row-val.on  { color: #fff; }
+    .phone-row-val.off { color: #2a2a2a; }
+
+    .phone-btn {
+      margin-top: auto;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      width: 100%;
+    }
+
+    /* state toggle */
+    .phone.state-active .phone-dot  { background: #fff; }
+    .phone.state-active .phone-status { color: #fff; }
+
+    /* ── steps ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .steps { list-style: none; margin-bottom: 64px; }
+    .steps li {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid #111;
+    }
+    .steps li:first-child { border-top: 1px solid #111; }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+      padding-top: 2px;
+      min-width: 20px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: #aaa;
+      line-height: 1.6;
+    }
+    .step-text strong {
+      color: #fff;
+      font-weight: 400;
+    }
+
+    /* ── download button ── */
+    .download-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      transition: opacity 0.15s;
+    }
+    .download-btn:hover { opacity: 0.88; }
+
+    .download-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #2a2a2a;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── footer ── */
+    .footer {
+      margin-top: 96px;
+      padding-top: 24px;
+      border-top: 1px solid #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #222;
+    }
+    .footer-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #222;
+      text-decoration: none;
+    }
+    .footer-link:hover { color: #555; }
+
+    /* ── phone toggle animation ── */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .phone-dot.active { animation: pulse 3s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="eyebrow">pacify.site / focused</div>
+
+    <h1 class="headline">FocusED</h1>
+    <p class="tagline">
+      Blocks Instagram Reels and YouTube Shorts.<br>
+      DMs work. Everything else works.<br>
+      No data. No accounts. No network.
+    </p>
+
+    <!-- Phone mockup — active state -->
+    <div class="mockup-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-app-label">FocusED</div>
+        <div class="phone-divider"></div>
+        <div class="phone-dot active"></div>
+        <div class="phone-status">Active</div>
+        <div class="phone-sub">Scrolling is being blocked</div>
+        <div class="phone-rows">
+          <div style="height:1px;background:#111;margin-bottom:14px;"></div>
+          <div class="phone-row">
+            <span class="phone-row-label">Instagram</span>
+            <span class="phone-row-val on">Reels — blocked</span>
+          </div>
+          <div class="phone-row">
+            <span class="phone-row-label">YouTube</span>
+            <span class="phone-row-val on">Shorts — blocked</span>
+          </div>
+          <div style="height:1px;background:#111;margin-top:4px;"></div>
+        </div>
+        <button class="phone-btn">Manage in Settings</button>
+      </div>
+    </div>
+
+    <!-- Install steps -->
+    <div class="section-label">How to install</div>
+    <ol class="steps">
+      <li>
+        <span class="step-num">01</span>
+        <span class="step-text">Download the APK below and open it on your Android phone.</span>
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <span class="step-text">
+          When prompted, tap <strong>Settings</strong> and enable
+          <strong>Install from this source</strong> for your browser. Then go back and install.
+        </span>
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <span class="step-text">
+          Open FocusED. Tap <strong>Enable FocusED</strong>.
+          Find it in the Accessibility list and toggle it on.
+        </span>
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <span class="step-text">
+          Done. The dot turns white. Reels and Shorts now bounce you back automatically.
+        </span>
+      </li>
+    </ol>
+
+    <!-- Download -->
+    <a href="/focused/FocusED.apk" class="download-btn" download>
+      Download FocusED.apk
+    </a>
+    <p class="download-note">
+      Android 8.0 and above &nbsp;/&nbsp; 1.2 MB &nbsp;/&nbsp; no internet permission
+    </p>
+
+    <div class="footer">
+      <span class="footer-brand">pacify.site</span>
+      <a href="/focused/privacy" class="footer-link">privacy policy</a>
+    </div>
+
+  </div>
+</body>
+</html>

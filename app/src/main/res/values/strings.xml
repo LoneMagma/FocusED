@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FocusED</string>
+    <string name="accessibility_service_description">FocusED detects when Instagram Reels or YouTube Shorts is open and navigates back. No data is collected or transmitted. Your DMs and everything else are untouched.</string>
+</resources>

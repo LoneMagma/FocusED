@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080808"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="80dp"
+        android:paddingBottom="56dp">
+
+        <!-- Badge -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v1.4  ·  EARLY BETA"
+            android:textSize="10sp"
+            android:letterSpacing="0.2"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#555555"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FocusED"
+            android:textSize="52sp"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="#FFFFFF"
+            android:letterSpacing="-0.03"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Tagline -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blocks Reels and Shorts.\nLets you use everything else."
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#AAAAAA"
+            android:lineSpacingMultiplier="1.5"
+            android:layout_marginBottom="56dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#222222"
+            android:layout_marginBottom="40dp" />
+
+        <!-- Section 1: What it does -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WHAT IT DOES"
+            android:textSize="10sp"
+            android:letterSpacing="0.2"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#555555"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="When you open Instagram Reels or YouTube Shorts, FocusED redirects you to your DMs instead. Your first Reel per session is ignored as a grace period — the second attempt redirects you.\n\nDMs, posts, stories, profiles, explore — all untouched. Only short-form video feeds are guarded."
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#999999"
+            android:lineSpacingMultiplier="1.7"
+            android:layout_marginBottom="40dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#222222"
+            android:layout_marginBottom="40dp" />
+
+        <!-- Section 2: Why Accessibility / not malware -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WHY IT ASKS FOR ACCESSIBILITY"
+            android:textSize="10sp"
+            android:letterSpacing="0.2"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#555555"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android's Accessibility API is the only way for a third-party app to know which screen is open inside Instagram or YouTube — without root access.\n\nFocusED uses it solely to read the name of the current screen. It does not read your messages, passwords, or any content. It has no internet permission — it is physically incapable of sending any data anywhere.\n\nThis is the same mechanism used by password managers, screen readers, and parental control apps."
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#999999"
+            android:lineSpacingMultiplier="1.7"
+            android:layout_marginBottom="40dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#222222"
+            android:layout_marginBottom="40dp" />
+
+        <!-- Section 3: In development -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IN DEVELOPMENT"
+            android:textSize="10sp"
+            android:letterSpacing="0.2"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#555555"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is version 1.4, an early beta. The core blocking works but the app is actively being improved. You may encounter edge cases — especially on newer versions of Instagram.\n\nMore features are coming: session timers, scroll nudges, goal tracking, and more redirects. This is a proof of concept being built in public."
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#999999"
+            android:lineSpacingMultiplier="1.7"
+            android:layout_marginBottom="56dp" />
+
+        <!-- CTA -->
+        <Button
+            android:id="@+id/onboardingButton"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="I understand, let's go"
+            android:textSize="14sp"
+            android:letterSpacing="0.04"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#080808"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pacify.site"
+                android:textSize="12sp"
+                android:letterSpacing="0.08"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#555555" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  ·  "
+                android:textSize="12sp"
+                android:textColor="#333333" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LoneMagma"
+                android:textSize="12sp"
+                android:letterSpacing="0.08"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#555555" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

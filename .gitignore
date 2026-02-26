@@ -1,0 +1,23 @@
+# Built outputs
+/app/build/
+/build/
+
+# Android Studio local config
+*.iml
+.idea/
+local.properties
+.DS_Store
+
+# Gradle cache
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Keystore — NEVER commit this
+*.jks
+*.keystore
+
+# Release APK — served from site, not stored in repo
+app/release/
+*.apk
