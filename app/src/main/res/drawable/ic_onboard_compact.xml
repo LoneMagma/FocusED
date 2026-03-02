@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp" android:height="72dp"
+    android:viewportWidth="72" android:viewportHeight="72">
+    <!-- Simple checkmark in circle — "agreed" -->
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M36,10C21.64,10 10,21.64 10,36s11.64,26 26,26 26,-11.64 26,-26S50.36,10 36,10z
+                          M36,58C23.85,58 14,48.15 14,36S23.85,14 36,14s22,9.85 22,22 -9.85,22 -22,22z" />
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M30,44.83L20.59,35.41 17.76,38.24 30,50.48 54.24,26.24 51.41,23.41z" />
+</vector>

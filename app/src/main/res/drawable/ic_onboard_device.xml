@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp" android:height="72dp"
+    android:viewportWidth="72" android:viewportHeight="72">
+    <!-- Phone outline -->
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M46,8H26c-3.31,0 -6,2.69 -6,6v44c0,3.31 2.69,6 6,6h20c3.31,0 6,-2.69 6,-6V14
+                          C52,10.69 49.31,8 46,8zM48,52H24V18h24V52zM36,60c-1.66,0 -3,-1.34 -3,-3s1.34,-3 3,-3 3,1.34 3,3 -1.34,3 -3,3z" />
+    <!-- Lock icon in centre of screen -->
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M36,28c-2.21,0 -4,1.79 -4,4v1h-2v8h12v-8h-2v-1C40,29.79 38.21,28 36,28z
+                          M36,30c1.1,0 2,0.9 2,2v1h-4v-1C34,30.9 34.9,30 36,30z" />
+</vector>

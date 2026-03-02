@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="54dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FocusED"
+            android:textSize="12sp"
+            android:textColor="@color/text_tertiary"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.25"/>
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Back"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="sans-serif"
+            android:minWidth="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/bg_btn_secondary"/>
+
+    </LinearLayout>
+
+    <!-- SETUP STATE -->
+    <ScrollView
+        android:id="@+id/layout_setup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What are you working on?"
+                android:textSize="28sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingMultiplier="1.15"
+                android:layout_marginBottom="20dp"/>
+
+            <EditText
+                android:id="@+id/et_task"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:hint="Describe your task"
+                android:textColorHint="@color/text_disabled"
+                android:textSize="17sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif"
+                android:background="@drawable/bg_input"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:inputType="text|textCapSentences"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Templates -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QUICK START"
+                android:textSize="10sp"
+                android:textColor="@color/text_disabled"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:layout_marginBottom="10dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_marginBottom="28dp">
+
+                <LinearLayout
+                    android:id="@+id/container_templates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+
+            </HorizontalScrollView>
+
+            <!-- Duration -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FOR HOW LONG"
+                android:textSize="10sp"
+                android:textColor="@color/text_disabled"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_duration_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="25 min"
+                android:textSize="42sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="12dp"/>
+
+            <SeekBar
+                android:id="@+id/seek_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/white"
+                android:thumbTint="@color/white"
+                android:layout_marginBottom="32dp"/>
+
+            <Button
+                android:id="@+id/btn_start_focus"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:text="START FOCUS"
+                android:textSize="14sp"
+                android:textColor="@color/btn_primary_text"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.08"
+                android:background="@drawable/bg_btn_primary"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ACTIVE STATE -->
+    <LinearLayout
+        android:id="@+id/layout_active"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Focus"
+            android:textSize="52sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_active_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="sans-serif"
+            android:lineSpacingMultiplier="1.4"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_active_remaining"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/text_tertiary"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="40dp"/>
+
+        <Button
+            android:id="@+id/btn_end_focus_early"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="End session early"
+            android:textSize="14sp"
+            android:textColor="@color/text_disabled"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/bg_btn_secondary"/>
+
+    </LinearLayout>
+
+</LinearLayout>

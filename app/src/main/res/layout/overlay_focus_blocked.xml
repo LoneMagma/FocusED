@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp">
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/dot_green"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Focus mode"
+        android:textSize="42sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_focus_app_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="sans-serif"
+        android:layout_marginBottom="36dp"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="28dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Working on"
+        android:textSize="11sp"
+        android:textColor="@color/text_tertiary"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.15"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_focus_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_focus_remaining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/text_tertiary"
+        android:fontFamily="monospace"/>
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider"/>
+
+    <Button
+        android:id="@+id/btn_end_focus"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="END FOCUS SESSION"
+        android:textSize="12sp"
+        android:textColor="@color/text_disabled"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.12"
+        android:background="@drawable/bg_btn_ghost"/>
+
+</LinearLayout>

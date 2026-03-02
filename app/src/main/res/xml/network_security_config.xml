@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    network_security_config.xml
+
+    Focused has NO network functionality. This file explicitly blocks all
+    cleartext traffic and defines no trusted certificates beyond the system
+    defaults — reinforcing that no data is transmitted anywhere.
+
+    This file is referenced in AndroidManifest.xml:
+        android:networkSecurityConfig="@xml/network_security_config"
+
+    Including this is a trust signal: it's verifiable by anyone inspecting
+    the APK that no outbound connections are being made.
+-->
+<network-security-config>
+    <!-- No domain-specific configs means no special network access is requested -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- Only trust system CAs — no custom/pinned certificates -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

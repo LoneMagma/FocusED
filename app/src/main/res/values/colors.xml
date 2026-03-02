@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core backgrounds -->
+    <color name="bg_primary">#0A0A0A</color>
+    <color name="bg_card">#141414</color>
+    <color name="bg_elevated">#1C1C1C</color>
+    <color name="bg_info_box">#141414</color>
+
+    <!-- Text hierarchy - clear contrast steps -->
+    <color name="text_primary">#F0F0F0</color>
+    <color name="text_secondary">#B8B8B8</color>
+    <color name="text_tertiary">#666666</color>
+    <color name="text_disabled">#333333</color>
+
+    <!-- Accent = white. No blue anywhere. -->
+    <color name="accent">#F0F0F0</color>
+    <color name="accent_light">#1C1C1C</color>
+
+    <!-- Status dots -->
+    <color name="dot_green">#F0F0F0</color>
+    <color name="dot_amber">#484848</color>
+    <color name="color_active">#F0F0F0</color>
+    <color name="color_warning">#C0C0C0</color>
+
+    <!-- Structural -->
+    <color name="divider">#1E1E1E</color>
+    <color name="white">#F0F0F0</color>
+    <color name="overlay_scrim">#F0000000</color>
+
+    <!-- Buttons -->
+    <color name="btn_primary_bg">#F0F0F0</color>
+    <color name="btn_primary_text">#0A0A0A</color>
+    <color name="btn_secondary_bg">#141414</color>
+    <color name="btn_secondary_text">#B8B8B8</color>
+
+    <!-- Aliases still referenced in item_app_setup -->
+    <color name="bg_elevated_alias">#1C1C1C</color>
+</resources>

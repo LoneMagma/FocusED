@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp">
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type this to continue."
+        android:textSize="26sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_tier2_challenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/accent"
+        android:fontFamily="monospace"
+        android:background="@drawable/bg_input"
+        android:padding="20dp"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- tv_tier2_phrase is an alias for tv_tier2_challenge for backward compat -->
+    <TextView
+        android:id="@+id/tv_tier2_phrase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/et_tier2_input"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="Type it here…"
+        android:textColorHint="@color/text_disabled"
+        android:textSize="16sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/bg_input"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_tier2_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/color_warning"
+        android:fontFamily="sans-serif"
+        android:visibility="gone"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tv_tier2_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/text_tertiary"
+        android:fontFamily="sans-serif"
+        android:visibility="invisible"/>
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider"/>
+
+    <Button
+        android:id="@+id/btn_tier2_submit"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="SUBMIT"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.10"
+        android:background="@drawable/bg_btn_secondary"/>
+
+    <Button
+        android:id="@+id/btn_tier2_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Never mind"
+        android:textSize="13sp"
+        android:textColor="@color/text_disabled"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/bg_btn_ghost"/>
+
+</LinearLayout>

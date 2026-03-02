@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Background fill -->
+    <path
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"
+        android:fillColor="#0A0A0A"/>
+    <!-- Letter F - clean, geometric, slightly heavy weight -->
+    <path
+        android:pathData="M30,22 L78,22 L78,34 L43,34 L43,52 L72,52 L72,64 L43,64 L43,86 L30,86 Z"
+        android:fillColor="#F0F0F0"/>
+</vector>

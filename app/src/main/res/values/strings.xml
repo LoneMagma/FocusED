@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FocusED</string>
+    <string name="app_name_styled">FocusED</string>
+    <string name="accessibility_service_description">FocusED monitors which app is open to enforce your usage limits. It cannot read messages, photos, or any content inside apps.</string>
+</resources>

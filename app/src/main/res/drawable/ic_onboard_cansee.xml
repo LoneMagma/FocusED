@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp" android:height="72dp"
+    android:viewportWidth="72" android:viewportHeight="72">
+    <!-- Eye outline -->
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M36,20C22,20 10,36 10,36s12,16 26,16s26,-16 26,-16S50,20 36,20zM36,48c-6.627,0 -12,-5.373 -12,-12s5.373,-12 12,-12s12,5.373 12,12S42.627,48 36,48z" />
+    <!-- Pupil drawn as path circle: M cx-r,cy a r,r 0 1,0 2r,0 a r,r 0 1,0 -2r,0 -->
+    <path android:fillColor="#3D6BE0"
+        android:pathData="M30,36a6,6 0 1,0 12,0a6,6 0 1,0 -12,0z" />
+</vector>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml — Focused v2.0
+
+    Permission philosophy (Play Protect compliance):
+    - Every permission declared here is used. No unused permissions.
+    - Every permission has a stated reason in the onboarding flow.
+    - No Device Admin, no VPN, no download of executable code.
+    - Accessibility Service description is specific and honest (see strings.xml).
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- =====================================================================
+         PERMISSIONS
+         ===================================================================== -->
+
+    <!-- Draw overlays on top of other apps (Accessibility gate + interventions) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Query per-app usage durations for session budget enforcement -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- Keep ForegroundService alive -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <!-- Restart after reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Wake locks for timed events (friction tier 4 countdown) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Schedule exact alarms for budget resets (Phase 3) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- Post notifications (persistent foreground notification) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- =====================================================================
+         QUERIES
+         Required on Android 11+ to detect if monitored apps are installed
+         ===================================================================== -->
+    <queries>
+        <!-- Common apps users may want to monitor -->
+        <package android:name="com.instagram.android" />
+        <package android:name="com.zhiliaoapp.musically" />   <!-- TikTok -->
+        <package android:name="com.google.android.youtube" />
+        <package android:name="com.twitter.android" />
+        <package android:name="com.snapchat.android" />
+        <package android:name="com.reddit.frontpage" />
+        <package android:name="com.facebook.katana" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_focused_notification"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_focused_notification"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Focused"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- =================================================================
+             ACTIVITIES
+             ================================================================= -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.onboarding.PermissionSetupActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.WeeklyHeatmapActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.ActivityLogActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.setup.AppSetupActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.FocusActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <!-- =================================================================
+             FOREGROUND SERVICE
+             ================================================================= -->
+        <service
+            android:name=".service.FocusedForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps Focused monitoring active so your usage limits remain enforced." />
+        </service>
+
+        <!-- =================================================================
+             ACCESSIBILITY SERVICE
+             The description and meta-data here are what Google Play reviews.
+             They must match what the service actually does.
+             ================================================================= -->
+        <service
+            android:name=".service.FocusedAccessibilityService"
+            android:exported="true"
+            android:label="FocusED"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <!--
+                meta-data points to res/xml/accessibility_service_config.xml
+                This is where event types, flags, and the honest description live.
+            -->
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- =================================================================
+             BOOT RECEIVER
+             ================================================================= -->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- WorkManager worker for Tier 3 friction countdown -->
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="shortService"
+            tools:node="merge" />
+
+    </application>
+
+</manifest>

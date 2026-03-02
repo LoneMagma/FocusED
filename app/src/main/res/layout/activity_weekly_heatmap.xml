@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="54dp"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FocusED"
+                android:textSize="12sp"
+                android:textColor="@color/text_tertiary"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.25"/>
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Back"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:background="@drawable/bg_btn_secondary"
+                android:minWidth="0dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
+
+        </LinearLayout>
+
+        <!-- Stats row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp">
+
+            <!-- Streak -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_streak_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="48sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-black"/>
+
+                <TextView
+                    android:id="@+id/tv_streak_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="days under limits"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_tertiary"
+                    android:fontFamily="sans-serif"/>
+
+            </LinearLayout>
+
+            <!-- Reflection score -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="end">
+
+                <TextView
+                    android:id="@+id/tv_reflection_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="48sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-black"/>
+
+                <TextView
+                    android:id="@+id/tv_reflection_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="no override data yet"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_tertiary"
+                    android:fontFamily="sans-serif"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider"/>
+
+        <!-- Heatmap -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ACTIVITY — LAST 7 DAYS"
+            android:textSize="10sp"
+            android:textColor="@color/text_disabled"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"/>
+
+        <com.focused.app.ui.HeatmapView
+            android:id="@+id/heatmap_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="midnight"
+                android:textSize="10sp"
+                android:textColor="@color/text_disabled"
+                android:fontFamily="sans-serif"/>
+
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="noon"
+                android:textSize="10sp"
+                android:textColor="@color/text_disabled"
+                android:fontFamily="sans-serif"/>
+
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11pm"
+                android:textSize="10sp"
+                android:textColor="@color/text_disabled"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider"/>
+
+        <!-- App breakdown -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TOP APPS THIS WEEK"
+            android:textSize="10sp"
+            android:textColor="@color/text_disabled"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/container_app_breakdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="40dp"/>
+
+    </LinearLayout>
+</ScrollView>

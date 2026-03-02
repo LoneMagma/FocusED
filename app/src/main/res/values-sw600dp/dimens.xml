@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_display">36sp</dimen>
+    <dimen name="text_heading">28sp</dimen>
+    <dimen name="text_title">24sp</dimen>
+    <dimen name="text_subtitle">21sp</dimen>
+    <dimen name="text_body">19sp</dimen>
+    <dimen name="text_secondary_body">18sp</dimen>
+    <dimen name="text_caption">16sp</dimen>
+    <dimen name="text_label">15sp</dimen>
+    <dimen name="text_tiny">14sp</dimen>
+    <dimen name="text_counter_large">80sp</dimen>
+    <dimen name="text_counter_xlarge">96sp</dimen>
+    <dimen name="text_counter_challenge">42sp</dimen>
+    <dimen name="icon_large">72dp</dimen>
+    <dimen name="icon_medium">52dp</dimen>
+    <dimen name="icon_small">32dp</dimen>
+    <dimen name="btn_height">64dp</dimen>
+    <dimen name="btn_height_small">52dp</dimen>
+    <dimen name="btn_height_large">68dp</dimen>
+    <dimen name="screen_padding">36dp</dimen>
+    <dimen name="card_padding">28dp</dimen>
+    <dimen name="item_spacing">20dp</dimen>
+    <dimen name="status_dot">13dp</dimen>
+    <dimen name="list_row_height">80dp</dimen>
+    <dimen name="input_height">88dp</dimen>
+    <dimen name="text_hero">64sp</dimen>
+</resources>
