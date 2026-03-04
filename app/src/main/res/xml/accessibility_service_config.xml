@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Accessibility service configuration for FocusED.
+
+    Event types:
+      typeWindowStateChanged — detects which app moves to foreground (package name only)
+      typeViewScrolled       — detects scroll activity for scroll intervention feature
+
+    Flags: NONE
+      flagReportViewIds and flagRetrieveInteractiveWindows are deliberately omitted.
+      FocusED does not read window content, view hierarchies, or interactive elements.
+      It only reads the package name from TYPE_WINDOW_STATE_CHANGED events.
+
+    canRetrieveWindowContent="false" — explicitly blocks content access.
+-->
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeWindowStateChanged|typeViewScrolled"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:notificationTimeout="100"
-    android:accessibilityFlags="flagReportViewIds|flagRetrieveInteractiveWindows"
     android:canRetrieveWindowContent="false"
     android:settingsActivity="com.focused.app.ui.MainActivity"
     android:description="@string/accessibility_service_description"

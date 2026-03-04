@@ -22,7 +22,12 @@ class FocusActivity : AppCompatActivity() {
         Template("Study",      30),
         Template("Writing",    45),
         Template("Planning",   20),
-        Template("Exercise",   45)
+        Template("Exercise",   45),
+        Template("Reading",    40),
+        Template("Coding",     60),
+        Template("Meditation", 15),
+        Template("Meeting",    30),
+        Template("Research",   45)
     )
 
     data class Template(val label: String, val durationMin: Int)
@@ -89,25 +94,50 @@ class FocusActivity : AppCompatActivity() {
         onSelect: (Template) -> Unit
     ) {
         container.removeAllViews()
+        container.orientation = LinearLayout.VERTICAL
         val dp = resources.displayMetrics.density
-        templates.forEach { tpl ->
+        val rowGap = (8 * dp).toInt()
+        val chipGap = (8 * dp).toInt()
+        val chipH = (38 * dp).toInt()
+
+        // Build rows of chips with wrapping — simple greedy row packer
+        var currentRow: LinearLayout? = null
+        var rowWidth = 0
+        val maxWidth = resources.displayMetrics.widthPixels - (48 * dp).toInt()
+
+        templates.forEachIndexed { idx, tpl ->
+            val chipText = "${tpl.label} · ${tpl.durationMin}m"
+            // Estimate chip width (13sp ≈ 13px/sp × density, +32dp padding)
+            val textPx = (chipText.length * 8 * dp).toInt() + (32 * dp).toInt()
+
+            if (currentRow == null || rowWidth + textPx + chipGap > maxWidth) {
+                currentRow = LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).also { if (idx > 0) it.topMargin = rowGap }
+                }
+                container.addView(currentRow)
+                rowWidth = 0
+            }
+
             val chip = android.widget.Button(this).apply {
-                text = "${tpl.label} · ${tpl.durationMin}m"
+                text = chipText
                 textSize = 13f
                 setTextColor(getColor(R.color.text_secondary))
-                setBackgroundColor(getColor(R.color.bg_card))
+                background = getDrawable(R.drawable.bg_btn_secondary)
                 val lp = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    (38 * dp).toInt()
-                ).apply {
-                    marginEnd = (8 * dp).toInt()
-                    bottomMargin = (8 * dp).toInt()
-                }
+                    LinearLayout.LayoutParams.WRAP_CONTENT, chipH
+                ).also { if (rowWidth > 0) it.marginStart = chipGap }
                 layoutParams = lp
-                setPadding((16 * dp).toInt(), 0, (16 * dp).toInt(), 0)
+                setPadding((14 * dp).toInt(), 0, (14 * dp).toInt(), 0)
+                android.view.ViewOutlineProvider.BACKGROUND
+                stateListAnimator = null
                 setOnClickListener { onSelect(tpl) }
             }
-            container.addView(chip)
+            currentRow?.addView(chip)
+            rowWidth += textPx + chipGap
         }
     }
 

@@ -9,8 +9,8 @@
     <!-- Text hierarchy - clear contrast steps -->
     <color name="text_primary">#F0F0F0</color>
     <color name="text_secondary">#B8B8B8</color>
-    <color name="text_tertiary">#666666</color>
-    <color name="text_disabled">#333333</color>
+    <color name="text_tertiary">#767676</color>
+    <color name="text_disabled">#4A4A4A</color>
 
     <!-- Accent = white. No blue anywhere. -->
     <color name="accent">#F0F0F0</color>
@@ -18,7 +18,7 @@
 
     <!-- Status dots -->
     <color name="dot_green">#F0F0F0</color>
-    <color name="dot_amber">#484848</color>
+    <color name="dot_amber">#888888</color>
     <color name="color_active">#F0F0F0</color>
     <color name="color_warning">#C0C0C0</color>
 

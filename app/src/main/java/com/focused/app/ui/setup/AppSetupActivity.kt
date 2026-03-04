@@ -38,7 +38,7 @@ class AppSetupActivity : AppCompatActivity() {
         "com.facebook.katana"
     )
 
-    private val limitSteps = listOf(5, 10, 15, 20, 30, 45, 60, 90, 120)
+    private val limitSteps = listOf(0, 5, 10, 15, 20, 30, 45, 60, 90, 120)  // 0 = fully blocked
     // 0 = unlimited, then 1..10 opens
     private val opensSteps = listOf(0, 1, 2, 3, 4, 5, 7, 10, 15, 20)
 
@@ -258,7 +258,7 @@ class AppSetupActivity : AppCompatActivity() {
             h.seekLimit.max = steps.size - 1
             val stepIdx = steps.indexOfFirst { it >= item.dailyLimitMin }.takeIf { it >= 0 } ?: steps.size - 1
             h.seekLimit.progress = stepIdx
-            h.tvLimitValue.text = "${item.dailyLimitMin} min / day"
+            h.tvLimitValue.text = if (item.dailyLimitMin == 0) "Blocked (no access)" else "${item.dailyLimitMin} min / day"
 
             // Opens counter
             h.tvOpensValue.text = if (item.maxOpens == 0) "Unlimited" else "${item.maxOpens} opens / day"
@@ -297,7 +297,7 @@ class AppSetupActivity : AppCompatActivity() {
             h.seekLimit.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(sb: SeekBar, p: Int, fromUser: Boolean) {
                     val mins = steps.getOrElse(p) { steps.last() }
-                    h.tvLimitValue.text = "$mins min / day"
+                    h.tvLimitValue.text = if (mins == 0) "Blocked (no access)" else "$mins min / day"
                     if (fromUser) onChange(item, "limit", mins)
                 }
                 override fun onStartTrackingTouch(sb: SeekBar) {}

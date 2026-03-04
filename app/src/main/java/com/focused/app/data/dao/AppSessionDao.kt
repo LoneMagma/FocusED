@@ -45,6 +45,25 @@ interface AppSessionDao {
 
     @Query("DELETE FROM app_sessions WHERE sessionStart < :cutoff")
     suspend fun deleteOlderThan(cutoff: Long)
+
+    /** Earliest session ever recorded — used to cap streak count */
+    @Query("SELECT MIN(sessionStart) FROM app_sessions")
+    suspend fun firstSessionStart(): Long?
+
+    /**
+     * Days where total usage for any package exceeded its budget.
+     * Used for the correct streak definition: days where the app was used
+     * and limits were respected. Returns dayKey strings e.g. "2026-03-01".
+     */
+    @Query("""
+        SELECT DISTINCT s.dayKey
+        FROM app_sessions s
+        INNER JOIN budget_rules r ON s.packageName = r.packageName
+        WHERE r.isActive = 1
+        GROUP BY s.packageName, s.dayKey
+        HAVING SUM(s.durationMs) > r.maxSessionDurationMs
+    """)
+    suspend fun daysOverLimit(): List<String>
 }
 
 data class DayUsage(val packageName: String, val dayKey: String, val totalMs: Long)

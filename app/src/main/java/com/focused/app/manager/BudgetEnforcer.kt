@@ -75,6 +75,11 @@ class BudgetEnforcer(
     // -------------------------------------------------------------------------
 
     private suspend fun handleEvent(event: AppEvent) {
+        // Paused: enforcement suspended until midnight or manually resumed
+        val prefs = context.getSharedPreferences("focused_prefs", android.content.Context.MODE_PRIVATE)
+        val pausedUntil = prefs.getLong("paused_until_ms", 0L)
+        if (System.currentTimeMillis() < pausedUntil) return
+
         // Focus mode: block all monitored apps
         if (focusSessionManager.isActive) {
             val db = FocusedDatabase.get(context)
@@ -187,7 +192,18 @@ class BudgetEnforcer(
         cancelDurationChecker(pkg)
         sessionManager.pauseSession(pkg, duration)
         grayscaleManager.removeTint(pkg)
+
+        // Dismiss ALL overlays for this package when it goes to background.
+        // WindowManager overlays persist across navigation — if we don't dismiss here
+        // they stack on top of the home screen, effectively locking out the device.
         overlayManager.dismiss("budget_warn_$pkg")
+        overlayManager.dismiss("budget_block_$pkg")
+        overlayManager.dismiss("downtime_$pkg")
+        overlayManager.dismiss("focus_block_$pkg")
+
+        // If the user navigated away mid-friction, abandon the flow entirely.
+        // Friction applies to the app — not to the device.
+        frictionManager.abandonFor(pkg)
 
         // Reflection card if they used the app after overriding
         if (overriddenPackages.remove(pkg)) {

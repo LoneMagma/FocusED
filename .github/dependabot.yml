@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+    ignore:
+      # Don't auto-bump Kotlin or AGP — these need manual testing
+      - dependency-name: "org.jetbrains.kotlin:kotlin-gradle-plugin"
+      - dependency-name: "com.android.tools.build:gradle"

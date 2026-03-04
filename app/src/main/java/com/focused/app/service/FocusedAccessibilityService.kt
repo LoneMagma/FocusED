@@ -40,8 +40,11 @@ class FocusedAccessibilityService : AccessibilityService() {
             feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
             eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED or AccessibilityEvent.TYPE_VIEW_SCROLLED
             notificationTimeout = 100L
-            flags = AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS or
-                    AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
+            // No flags set — FocusED only reads packageName from events.
+            // FLAG_REPORT_VIEW_IDS and FLAG_RETRIEVE_INTERACTIVE_WINDOWS are
+            // deliberately omitted: they grant access to window content which
+            // this app does not need and which triggers Play Protect warnings.
+            flags = 0
         }
 
         overlayManager      = OverlayManager(this)
@@ -97,9 +100,38 @@ class FocusedAccessibilityService : AccessibilityService() {
         }
     }
 
+    // Packages that should never be tracked as the "current" foreground app.
+    // When Android switches to these (HOME press, system dialogs), we must still
+    // emit APP_BACKGROUND for whatever was previously foreground so overlays
+    // don't persist on the home screen. But we don't track these as "foreground."
+    private val ignoredPackages = setOf(
+        packageName,                          // FocusED itself
+        "com.android.systemui",               // Status bar, quick settings
+        "com.android.launcher",               // Stock launcher
+        "com.google.android.apps.nexuslauncher", // Pixel launcher
+        "com.miui.home",                      // MIUI launcher
+        "com.sec.android.app.launcher",       // Samsung launcher
+        "com.oneplus.launcher",               // OnePlus launcher
+        "com.oppo.launcher",                  // Oppo launcher
+        "com.realme.launcher"                 // Realme launcher
+    )
+
     private fun handleWindowChange(event: AccessibilityEvent) {
         val pkg = event.packageName?.toString() ?: return
-        if (pkg == packageName || pkg == "com.android.systemui") return
+
+        // If the incoming package is the launcher or system UI:
+        // 1. Still emit APP_BACKGROUND for whatever was foreground (critical — prevents device lockout)
+        // 2. Clear lastWindowPackage so re-opening the social app fires a fresh APP_FOREGROUND
+        // 3. Do NOT emit APP_FOREGROUND for the launcher itself
+        if (ignoredPackages.any { pkg.startsWith(it) } || pkg.endsWith(".launcher")) {
+            if (lastWindowPackage.isNotEmpty()) {
+                AppEventBus.emit(AppEvent(type = AppEvent.Type.APP_BACKGROUND, packageName = lastWindowPackage))
+                lastWindowPackage = ""
+                currentForegroundPackage = ""
+            }
+            return
+        }
+
         if (pkg == lastWindowPackage) return
 
         if (lastWindowPackage.isNotEmpty()) {
